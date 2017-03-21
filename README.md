@@ -1,6 +1,6 @@
 # Cartrabbit Hook for Wordpress
 
-Add the bellow piece of code in **cartrabbit.config.php** to load FlycartHook service provider
+Add the below piece of code in **cartrabbit.config.php** to load Cartrabbit Hook service provider
 
 `'providers' => array(`
 
