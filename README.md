@@ -1,21 +1,6 @@
 # Cartrabbit Hook for Wordpress
-Add the bellow piece of code in **plugin.php** to set $app in Facade
 
-
-`if ( is_plugin_active(plugin_basename( __FILE__ )) ) {`
-
- `   $plugin = new \Cartrabbit\Framework\Base\Plugin(plugin_dir_path( __FILE__ ));`
-
- `   $herbert->registerPlugin($plugin);`
-
- `   $app = $plugin->getContainer();`
-
-`   Cartrabbit\Hook\Facades\Facade::setFacadeApplication($app);`
-
-`}`
-
-
-Add the bellow piece of code in **herbert.config.php** to load FlycartHook service provider
+Add the bellow piece of code in **cartrabbit.config.php** to load FlycartHook service provider
 
 `'providers' => array(`
 
