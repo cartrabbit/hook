@@ -1,7 +1,6 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 interface IHook
 {
     /**
@@ -20,7 +19,7 @@ interface IHook
      * Run all events registered with the hook.
      *
      * @param string $hook The event hook name.
-     * @param mixed  $args
+     * @param mixed $args
      *
      * @return mixed
      */

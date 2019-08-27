@@ -34,17 +34,16 @@ abstract class Hook implements IHook
      * Wrapper of the "add_action" or "add_filter" functions. Allows
      * a developer to specify a controller class or closure.
      *
-     * @param string                $hook          The action hook name.
-     * @param \Closure|string|array $callback      The closure, function name or class to use, array containing an instance and its public method name.
-     * @param int                   $priority      The priority order for this action.
-     * @param int                   $accepted_args Default number of accepted arguments.
+     * @param string $hook The action hook name.
+     * @param \Closure|string|array $callback The closure, function name or class to use, array containing an instance and its public method name.
+     * @param int $priority The priority order for this action.
+     * @param int $accepted_args Default number of accepted arguments.
      *
      * @return \Cartrabbit\Hook\ActionBuilder
      */
     public function add($hook, $callback, $priority = 10, $accepted_args = 3)
     {
         $this->addHookEvent($hook, $callback, $priority, $accepted_args);
-
         return $this;
     }
 
@@ -60,7 +59,6 @@ abstract class Hook implements IHook
         if (array_key_exists($hook, $this->hooks)) {
             return true;
         }
-
         return false;
     }
 
@@ -76,7 +74,6 @@ abstract class Hook implements IHook
         if (array_key_exists($hook, $this->hooks)) {
             return $this->hooks[$hook];
         }
-
         return false;
     }
 
@@ -97,25 +94,21 @@ abstract class Hook implements IHook
             if (!$callback = $this->getCallback($hook)) {
                 return false;
             }
-
             list($callback, $priority, $accepted_args) = $callback;
-
             // Unset the hook.
             unset($this->hooks[$hook]);
         }
-
         remove_action($hook, $callback, $priority);
-
         return $this;
     }
 
     /**
      * Add an event for the specified hook.
      *
-     * @param string                $hook
-     * @param \Closure|string|array $callback      The closure, function name or class to use, array containing an instance and its public method name.
-     * @param int                   $priority      The priority order.
-     * @param int                   $accepted_args The default number of accepted arguments.
+     * @param string $hook
+     * @param \Closure|string|array $callback The closure, function name or class to use, array containing an instance and its public method name.
+     * @param int $priority The priority order.
+     * @param int $accepted_args The default number of accepted arguments.
      *
      * @return \Closure|array|string
      */
@@ -133,7 +126,6 @@ abstract class Hook implements IHook
                 $callback = $this->addClassEvent($hook, $callback, $priority, $accepted_args);
             }
         }
-
         return $callback;
     }
 
@@ -142,17 +134,15 @@ abstract class Hook implements IHook
      *
      * @param string $hook
      * @param string $class
-     * @param int    $priority
-     * @param int    $accepted_args
+     * @param int $priority
+     * @param int $accepted_args
      *
      * @return array
      */
     protected function addClassEvent($hook, $class, $priority, $accepted_args)
     {
         $callback = $this->buildClassEventCallback($class, $hook);
-
         $this->addEventListener($hook, $callback, $priority, $accepted_args);
-
         return $callback;
     }
 
@@ -167,9 +157,7 @@ abstract class Hook implements IHook
     protected function buildClassEventCallback($class, $hook)
     {
         list($class, $method) = $this->parseClassEvent($class, $hook);
-
         $instance = $this->container->make($class);
-
         return [$instance, $method];
     }
 
@@ -186,20 +174,18 @@ abstract class Hook implements IHook
         if (str_contains($class, '@')) {
             return explode('@', $class);
         }
-
         // If no method is defined, use the hook name as the method name.
         $method = str_contains($hook, '-') ? str_replace('-', '_', $hook) : $hook;
-
         return [$class, $method];
     }
 
     /**
      * Add an event for the specified hook.
      *
-     * @param string          $name
+     * @param string $name
      * @param \Closure|string $callback
-     * @param int             $priority
-     * @param int             $accepted_args
+     * @param int $priority
+     * @param int $accepted_args
      *
      * @throws HookException
      */

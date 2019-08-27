@@ -1,7 +1,6 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 class Action extends ActionSubject
 {
     /**
@@ -44,7 +43,7 @@ class Action extends ActionSubject
      * @param string $hook
      * @param string $object
      * @param string $callback
-     * @param mixed  $args
+     * @param mixed $args
      * @ignore
      */
     public function __construct($hook, $object, $callback, $args = null)
@@ -53,7 +52,6 @@ class Action extends ActionSubject
         $this->object = $object;
         $this->callback = $callback;
         $this->args = $args;
-
         $this->notifier = new ActionNotifier($this); // Observer - notifier
         $this->register($this->notifier);
     }
@@ -61,10 +59,10 @@ class Action extends ActionSubject
     /**
      * Launch / Listen to an event / hook.
      *
-     * @param string     $hook     The action/hook name
-     * @param string     $object   The class instance name to use
-     * @param string     $callback The instance method to call
-     * @param null|mixed $args     The add_action extra arguments
+     * @param string $hook The action/hook name
+     * @param string $object The class instance name to use
+     * @param string $callback The instance method to call
+     * @param null|mixed $args The add_action extra arguments
      *
      * @return static An Action instance
      */
@@ -98,13 +96,12 @@ class Action extends ActionSubject
     /**
      * Execute the callback function associated
      * to the given object.
-     * 
+     *
      * @ignore
      */
     public function run()
     {
         $signature = $this->callback;
-
         return $this->object->$signature($this->params, $this->args);
     }
- }
+}

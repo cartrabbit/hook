@@ -1,7 +1,6 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 class ActionNotifier implements ActionObserver
 {
     /**

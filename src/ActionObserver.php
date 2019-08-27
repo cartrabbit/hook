@@ -1,7 +1,6 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 interface ActionObserver
 {
     /**

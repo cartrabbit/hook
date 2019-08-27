@@ -1,14 +1,13 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 class FilterBuilder extends Hook
 {
     /**
      * Run all filters registered with the hook.
      *
      * @param string $hook The filter hook name.
-     * @param mixed  $args
+     * @param mixed $args
      *
      * @return mixed
      */
@@ -19,17 +18,16 @@ class FilterBuilder extends Hook
         } else {
             return apply_filters($hook, $args);
         }
-
         //return $this;
     }
 
     /**
      * Add a filter event for the specified hook.
      *
-     * @param string          $name
+     * @param string $name
      * @param \Closure|string $callback
-     * @param int             $priority
-     * @param int             $accepted_args
+     * @param int $priority
+     * @param int $accepted_args
      */
     protected function addEventListener($name, $callback, $priority, $accepted_args)
     {

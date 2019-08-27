@@ -1,7 +1,6 @@
 <?php
 
 namespace Cartrabbit\Hook;
-
 abstract class ActionSubject
 {
     private $observers = array();
