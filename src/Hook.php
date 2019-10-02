@@ -2,14 +2,14 @@
 
 namespace Cartrabbit\Hook;
 
-use Cartrabbit\Framework\Application;
+use Cartrabbit\Application\Application;
 
 abstract class Hook implements IHook
 {
     /**
      * The service container.
      *
-     * @var \Cartrabbit\Framework\Application
+     * @var \Cartrabbit\Application\Application
      */
     protected $container;
 

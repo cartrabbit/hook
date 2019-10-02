@@ -2,7 +2,7 @@
 
 namespace Cartrabbit\Hook\Facades;
 
-use Cartrabbit\Framework\Facades\Facade;
+use Illuminate\Support\Facades\Facade;
 
 class Action extends Facade
 {
